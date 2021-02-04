@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+void swap(int* a, int* b);    // 포인터를 활용한 swap 함수.
+int main(void)
+{
+    int tcase, arr[1001] = { 0 };
+    scanf("%d", &tcase);
+    for (int i = 0; i < tcase; i++) {   // 정렬해야하는 수 입력받기.
+        scanf("%d", &arr[i]);
+    }
+    for (int i = 0; i < tcase - 1; i++) {   // 최후열의 원소는 비교할 다음 원소가 없기 때문에 tcase - 1까지 서칭.
+        for (int j = 0; j < tcase - i - 1; j++) {   // 이미 자리가 확정된 원소는 비교할 필요가 없기 때문에 tcase - i - 1까지 서칭.
+            if (arr[j] > arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+            }
+        }
+    }
+    return 0;
+}
+
+void swap(int* a, int* b) {
+    int temp = (*b);    // 자리바꿈을 위한 임의의 변수 temp 선언.
+    (*b) = (*a);
+    (*a) = temp;
+}
